@@ -30,6 +30,7 @@
     "fix:prettier": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
     "fix": "npm run fix:lint && npm run fix:prettier",
     "build": "gatsby build",
+    "postbuild": "ls public/ && pwd && cp src/data.json public/data.json && ls public/",
     "develop": "gatsby develop",
     "dev": "npm run develop",
     "start": "npm run develop",
@@ -57,5 +58,11 @@
   },
   "bugs": {
     "url": "https://github.com/taylorbryant/gatsby-starter-tailwind/issues"
-  }
+  },
+  "copyFiles": [
+    {
+      "from": "**/src/data.json",
+      "to": "src/pages/data.json"
+    }
+  ]
 }
