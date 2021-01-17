@@ -40,7 +40,7 @@ class Stats extends React.Component {
 
   render() {
     return(
-      <div>
+      <div >
       {this.calculateStats()}
       </div>
     );
