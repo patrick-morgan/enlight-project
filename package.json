@@ -13,7 +13,8 @@
     "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-helmet": "6.1.0"
+    "react-helmet": "6.1.0",
+    "react-vis": "^1.11.7"
   },
   "keywords": [
     "gatsby",
@@ -30,8 +31,8 @@
     "fix:prettier": "prettier --write \"**/*.{css,js,jsx,json,md}\"",
     "fix": "npm run fix:lint && npm run fix:prettier",
     "build": "gatsby build",
-    "postbuild": "ls public/ && pwd && cp src/data.json public/data.json && ls public/",
-    "develop": "gatsby develop",
+    "postbuild": "cp src/data.json public/data.json",
+    "develop": "gatsby develop && cp src/data.json public/data.json",
     "dev": "npm run develop",
     "start": "npm run develop",
     "serve": "gatsby serve",

@@ -1,45 +1,21 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 class Stats extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const {data} = this.props;
     this.state = {
-      data: [],
+      data: data
     };
     this.calculateStats = this.calculateStats.bind(this);
-  }
-
-  componentDidMount() {
-    fetch('data.json',
-    {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    }
-    )
-      .then((response) => {
-        // handle error
-        if(!response.ok) throw Error(response.statusText);
-        console.log("successful api call");
-        return response.json();
-      }
-      )
-      .then((data) => {
-        if (data != undefined) {
-          this.setState({
-            data: data.completions,
-          });
-          console.log(data.completions);
-        }
-      })
   }
 
   calculateStats() {
     // Calculate Completion Percentage
     let completions = 0;
     let milestonesCompleted = 0;
-    if (this.state.data.length > 0) {
+    if (this.state.data != undefined) {
       this.state.data.map((row) => {
         const { milestones } = row;
         for (let i = 0; i < milestones.length; ++i) {
@@ -55,7 +31,7 @@ class Stats extends React.Component {
         <div>
           <h4>Overall Completion Rate:</h4>
           <p>{complRate}</p>
-          <h4>Average Number of Milestones Completed Per Cohort Member</h4>
+          <h4>Average Number of Milestones Completed Per Cohort Member:</h4>
           <p>{avgMiles}</p>
         </div>
       )
@@ -64,12 +40,15 @@ class Stats extends React.Component {
 
   render() {
     return(
-      <div>
+      <div >
       {this.calculateStats()}
       </div>
     );
   }
 }
 
+Stats.propTypes = {
+  data: PropTypes.array
+};
 
 export default Stats;
